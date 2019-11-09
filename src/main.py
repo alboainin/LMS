@@ -1,5 +1,6 @@
 import getpass
 import json
+
 import os
 
 def cls():
@@ -97,9 +98,11 @@ def student():
 
 def admin():
     
-    
-    count = 1
-    while count !=4:
+    check = False
+
+    count = 0
+    while count < 3:
+        
         cls()
         exp = 1
         print(f'{"*"*10} ADMIN LOGIN {"*"*10}')
@@ -112,40 +115,46 @@ def admin():
     
         for data in data_file['admin_account']:
           
-            if admin_loginUsername == data["username"]:
-                if admin_loginPassword == data["password"]:
+            if admin_loginUsername == data["username"] and admin_loginPassword == data["password"]:
+                check = True
+                count = 5
+                break
+                cls()
+
+            else:      
+                count+=1
+        
+                if count >= 3:
+                    break 
                     cls()
-                    break
-                    
-        if admin_loginUsername == data["username"] and admin_loginPassword == data["password"]:
-            break
-
-        count += 1
-
-        if count == 4:
-            print("3 Incorrect Tries")
-            break
-
-    while exp != 3:
-        print(f'{"*"*10}ADMIN PAGE{"*"*10}\n')
-        print("1) Add Book")
-        print("2) Browse Library")
-        print("3) Exit\n")
-        try:
-            user_input = int(input("> "))
+                    print("3 Incorrect Attempts To Login\n")
+                   
+        
+    while check == True:
+           
+            cls()
+            print(f'{"*"*10}ADMIN PAGE{"*"*10}\n')
+            print("1) Add Book")
+            print("2) Browse Library")
+            print("3) Exit\n")
+            
+            try:
+                user_input = int(input("> "))
          
-        except:
-            warning = "> [WARNING] please choose on of the options" 
-            print(warning.upper())
+            except:
+                warning = "> [WARNING] please choose on of the options" 
+                print(warning.upper())
         
-        if user_input == 1:
-            addBook()
+            if user_input == 1:
+                addBook()
 
-        elif user_input == 2:
-            manageBook()
+            elif user_input == 2:
+                manageBook()
         
-        elif user_input == 3:
-            break
+            elif user_input == 3:
+                check = False
+                break
+                        
 
 def guest():
     pass
