@@ -4,8 +4,17 @@ import random
 import string
 import time
 import os
-from fileInit import cls
+from fileInit import *
 
+
+user_input_arg = sys.argv[1] if len(sys.argv) > 1 else '.'
+
+if len(user_input_arg)==1:
+    pass
+elif user_input_arg == "init":
+    file_init()
+    sub_folder()
+    exit()
 
 def addBook():
     global book_id, book_name, book_genre
@@ -23,26 +32,18 @@ def addBook():
         print(warning.upper())
    
     id = ''.join([random.choice(string.ascii_letters + string.digits) for n in range(10)])
-   
-    #with open("book_data.json","a+") as data_pure:
-     #   data = {}
-      #  data[book_genre] = []
+    
+    with open(f'{genre}.json','a+') as data_pure:
 
-       # data[book_genre].append({"name":book_name,"author":book_author,"description":book_description,"genre":book_genre,"id":book_id})
+        data = {}
+        data[book_name] = []
+
+        data[book_name].append({"author":book_author,"description":book_description,"id":book_id})
  
-        #data_pure.seek(0)
-        #json.dump(data,data_pure)
+        data_pure.seek(0)
+        json.dump(data,data_pure)
         
-    with open("books.csv","a+") as data:
-        #f = ['book_genre', 'book_name', 'book_author','book_id']
-        file= csv.writer(data)
-        
-        file.writerow([genre,name,author,id])
-        
-        print("Book Added Succesfully!")
-        time.sleep(10)
-        cls()
-
+    
 def ManageBook():
     pass
 
