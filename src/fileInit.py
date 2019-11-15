@@ -2,7 +2,7 @@ import os
 import sys
 
 
-location = r'\\ALILAPTOP\programs'
+location = r'\\host\programs'
 main_file = ".lms"
 path =os.path.join(location,main_file)
 
