@@ -1,38 +1,66 @@
 import getpass
 import json
-
+import random
+import string
+import time
 import os
+from fileInit import cls
 
-def cls():
-    os.system("Cls" if os.name =="nt" else "clear")
-    
-def ManageBook():
-    cls()
-    ''' 
-    with open("book_data.json","r") as read_data:
-        data = json.load(read_data)
 
-        for enum in range(data[]):
-        print("")
-        '''
 def addBook():
-    print(f'{"*"*10}EDITING COLLECTION{"*"*10}')
-    book_genre = str(input("genre: ")) 
-    book_name = str(input("Enter book name: "))
-    book_author = str(input("Enter book author: "))
-    book_description = str(input("description: "))
-    
-    with open("book_data.json","r+") as data_pure:
-        data = {}
-        data[book_genre] = []
+    global book_id, book_name, book_genre
 
-        data["genre"][book_genre].append({"name":book_name,"author":book_author,"description":book_description,"genre":book_genre})
+    print(f'{"*"*10}EDITING COLLECTION{"*"*10}')
+   
+    try:
+        genre = str(input("genre: ")) 
+        name = str(input("Enter book name: "))
+        author = str(input("Enter book author: "))
+        #book_description = str(input("description: "))
+
+    except:
+        warning = "> [WARNING] please choose on of the options" 
+        print(warning.upper())
+   
+    id = ''.join([random.choice(string.ascii_letters + string.digits) for n in range(10)])
+   
+    #with open("book_data.json","a+") as data_pure:
+     #   data = {}
+      #  data[book_genre] = []
+
+       # data[book_genre].append({"name":book_name,"author":book_author,"description":book_description,"genre":book_genre,"id":book_id})
  
-        data_pure.seek(0)
-        json.dump(data,data_pure)
+        #data_pure.seek(0)
+        #json.dump(data,data_pure)
+        
+    with open("books.csv","a+") as data:
+        #f = ['book_genre', 'book_name', 'book_author','book_id']
+        file= csv.writer(data)
+        
+        file.writerow([genre,name,author,id])
+        
         print("Book Added Succesfully!")
+        time.sleep(10)
         cls()
 
+def ManageBook():
+    pass
+
+def findBook():
+ 
+    cls()
+   
+    print(f'{"*"*10}FIND BOOK{"*"*10}')
+    id = input("please type book name/id: ")
+    #with open("book_data.json") as f:
+     #   file = json.load(f)
+      #  print(file[book_genre])
+
+    with open("books.csv","r") as file:
+
+        file_reader = csv.DictReader(file)
+        if id == file_reader['book_id']:
+            print(file_reader['book_name'])
 def login():
 
     print(f'{"*"*10} STUDENT LOGIN {"*"*10}')
@@ -59,43 +87,6 @@ def login():
             else:
                 cls()
                 print("PLEASE CREATE AN ACCOUNT!")
-
-def student_signIn():
-    
-    username = input("username: ")
-    password = getpass.getpass(prompt= "password: ")
-
-    with open("accounts.json","r+") as student_account:
-        user_account = json.load(student_account)
-
-        if username in user_account.keys():
-            print("An account of this Username already exists.\nPlease enter the login panel.")
-      
-        else:
-            user_account[username] = [password, "Student"]
-            student_account.seek(0)
-            json.dump(user_account,student_account)
-            print("Account Created Successfully!")   
-
-def student():
-   
-    
-    print("1) Login")
-    print("2) Create Account")
-    
-    try:
-        user_input = int(input(">  "))
-    
-    except:
-        warning = "> [WARNING] please choose on of the options" 
-        print(warning.upper())
-    
-    if user_input == 1:
-        login()
-
-    elif user_input == 2:
-        student_signIn()
-
 def admin():
     
     check = False
@@ -140,7 +131,7 @@ def admin():
             
             try:
                 user_input = int(input("> "))
-         
+            
             except:
                 warning = "> [WARNING] please choose on of the options" 
                 print(warning.upper())
@@ -149,12 +140,47 @@ def admin():
                 addBook()
 
             elif user_input == 2:
-                manageBook()
-        
+                findBook()
+                    
             elif user_input == 3:
                 check = False
                 break
-                        
+
+def student_signIn():
+    
+    username = input("username: ")
+    password = getpass.getpass(prompt= "password: ")
+
+    with open("accounts.json","r+") as student_account:
+        user_account = json.load(student_account)
+
+        if username in user_account.keys():
+            print("An account of this Username already exists.\nPlease enter the login panel.")
+      
+        else:
+            user_account[username] = [password, "Student"]
+            student_account.seek(0)
+            json.dump(user_account,student_account)
+            print("Account Created Successfully!")   
+
+def student():
+   
+    
+    print("1) Login")
+    print("2) Create Account")
+    
+    try:
+        user_input = int(input(">  "))
+    
+    except:
+        warning = "> [WARNING] please choose on of the options" 
+        print(warning.upper())
+    
+    if user_input == 1:
+        login()
+
+    elif user_input == 2:
+        student_signIn()                        
 
 def guest():
     pass
