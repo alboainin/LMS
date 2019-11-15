@@ -1,13 +1,8 @@
 import os
 import sys
 
-try:
-    user_input_arg = sys.argv[1]
 
-except:
-    print("[404] TRY AGAIN")
-
-location = r'\\host\projects'
+location = r'\\ALILAPTOP\programs'
 main_file = ".lms"
 path =os.path.join(location,main_file)
 
@@ -43,9 +38,3 @@ def sub_folder():
         os.chdir(path)
         os.mkdir(folder)
         print(f'{folder} Directory Created!')
-
-if user_input_arg == "init":
-    file_init()
-    sub_folder()
-
-    
