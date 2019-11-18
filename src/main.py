@@ -4,7 +4,7 @@ import random
 import string
 import time
 import os
-from fileInit import *
+from fileinit import *
 
 
 user_input_arg = sys.argv[1] if len(sys.argv) > 1 else '.'
