@@ -51,4 +51,3 @@ def sender():
         
             with open(f'{filename}.json','a+') as file:
                 data = file.read()
-        
