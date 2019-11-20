@@ -1,6 +1,6 @@
 import openpyxl
 import os
-from fileInit import *
+from fileinit import *
 
 reader_data= []
 clean_data=[]
@@ -43,5 +43,4 @@ def sender():
             
             with open(f'{filename.replace(" ","-")}.json','a+') as file:
                 data = file.read()
-        
-sender()
+                      
