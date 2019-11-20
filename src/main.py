@@ -4,16 +4,18 @@ import random
 import string
 import time
 import os
-from fileinit import *
+from fileInit import *
 
 
 user_input_arg = sys.argv[1] if len(sys.argv) > 1 else '.'
 
 if len(user_input_arg)==1:
     pass
+
 elif user_input_arg == "init":
     file_init()
     sub_folder()
+    account_files()
     exit()
 
 def addBook():
@@ -57,19 +59,14 @@ def findBook():
      #   file = json.load(f)
       #  print(file[book_genre])
 
-    with open("books.csv","r") as file:
-
-        file_reader = csv.DictReader(file)
-        if id == file_reader['book_id']:
-            print(file_reader['book_name'])
 def login():
 
     print(f'{"*"*10} STUDENT LOGIN {"*"*10}')
 
     student_loginUsername = str(input("username: "))
     student_loginPassword = getpass.getpass(prompt="password: ")
-        
-    with open("accounts.json","r+") as data:
+    os.chdir(account_path)    
+    with open("student.json","a+") as data:
         user_account = json.load(data)
 
         if student_loginUsername not in user_account.keys():
@@ -89,7 +86,7 @@ def login():
                 cls()
                 print("PLEASE CREATE AN ACCOUNT!")
 def admin():
-    
+     
     check = False
 
     count = 0
@@ -101,8 +98,8 @@ def admin():
     
         admin_loginUsername = input("username: ")
         admin_loginPassword = getpass.getpass(prompt = "password: ")
-    
-        with open('accounts.json') as f:
+        os.chdir(account_path)    
+        with open('admin.json','a+') as f:
             data_file = json.load(f)
     
         for data in data_file['admin_account']:
@@ -151,8 +148,8 @@ def student_signIn():
     
     username = input("username: ")
     password = getpass.getpass(prompt= "password: ")
-
-    with open("accounts.json","r+") as student_account:
+    os.chdir(account_path)
+    with open("student.json","a+") as student_account:
         user_account = json.load(student_account)
 
         if username in user_account.keys():
