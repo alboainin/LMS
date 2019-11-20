@@ -2,9 +2,11 @@ import os
 import sys
 
 
-location = r'\\host\programs'
+location = r'\\HOST\programs'
 main_file = ".lms"
 path =os.path.join(location,main_file)
+folder = "data"
+path_sub =os.path.join(path,folder)
 
 def cls():
     os.system("Cls" if os.name =="nt" else "clear")
@@ -28,9 +30,6 @@ def file_init():
     
 def sub_folder():
     
-    folder = "data"
-    path_sub = path+'\\'+folder
-    
     if os.path.isdir(path_sub):
         print(f'{folder} Directory Exists!')
 
@@ -38,3 +37,4 @@ def sub_folder():
         os.chdir(path)
         os.mkdir(folder)
         print(f'{folder} Directory Created!')
+   
