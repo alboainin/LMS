@@ -1,5 +1,6 @@
 import openpyxl
 import os
+from fileInit import *
 
 reader_data= []
 clean_data=[]
@@ -27,17 +28,9 @@ def sender():
 
     workbook = openpyxl.load_workbook('data.xlsx')
     worksheet = workbook.get_sheet_by_name('pure-data')
-    
-    pwd = os.getcwd()
-    dir = "data"
-    path = os.path.join(pwd,dir)   
-        
-    if os.path.isdir(path):
-        os.chdir(dir)
-        
-    else:
-        os.mkdir(path)
 
+    os.chdir(path_sub)
+        
     for cell in worksheet['E']:
         
         data_lower = cell.value
@@ -47,7 +40,8 @@ def sender():
         catagory_list.sort()
                
         for filename in catagory_list:
-            os.chdir(path)
-        
-            with open(f'{filename}.json','a+') as file:
+            
+            with open(f'{filename.replace(" ","-")}.json','a+') as file:
                 data = file.read()
+        
+sender()
