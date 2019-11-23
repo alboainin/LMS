@@ -5,7 +5,7 @@ import string
 import time
 import os
 from fileInit import *
-
+from reader import *
 
 user_input_arg = sys.argv[1] if len(sys.argv) > 1 else '.'
 
@@ -17,6 +17,26 @@ elif user_input_arg == "init":
     sub_folder()
     account_files()
     exit()
+
+
+def genre_printer():
+     
+    checker = 1
+    
+    for item in os.listdir(path_sub):
+        data_unpure = item.replace("-","")
+        data = (os.path.splitext(os.path.basename(f'{data_unpure}'))[0])
+        length = len(os.listdir(path_sub))
+
+        while (checker != length):
+            print(f'{item}: ')
+            checker+=1
+            if checker == length:
+                break
+            else: 
+                continue
+            
+        print("")
 
 def addBook():
     global book_id, book_name, book_genre
@@ -54,11 +74,19 @@ def findBook():
     cls()
    
     print(f'{"*"*10}FIND BOOK{"*"*10}')
-    id = input("please type book name/id: ")
-    #with open("book_data.json") as f:
-     #   file = json.load(f)
-      #  print(file[book_genre])
-
+    #id = input("please type book name/id: ")
+    
+    genre_printer()
+    
+    try:
+        user_input = int(input("> "))
+            
+    except:
+        warning = "\n> [WARNING] please enter a valid input!" 
+        print(warning.upper())
+    
+    input()
+    
 def login():
 
     print(f'{"*"*10} STUDENT LOGIN {"*"*10}')
@@ -85,11 +113,13 @@ def login():
             else:
                 cls()
                 print("PLEASE CREATE AN ACCOUNT!")
+
 def admin():
      
     check = False
 
     count = 0
+
     while count < 3:
         
         cls()
@@ -98,9 +128,11 @@ def admin():
     
         admin_loginUsername = input("username: ")
         admin_loginPassword = getpass.getpass(prompt = "password: ")
+        
         os.chdir(account_path)    
-        with open('admin.json','a+') as f:
-            data_file = json.load(f)
+        
+        with open("admin.json","r+") as data:
+            data_file = json.load(data)
     
         for data in data_file['admin_account']:
           
