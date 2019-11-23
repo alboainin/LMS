@@ -1,10 +1,11 @@
 import openpyxl
 import os
-from fileinit import *
+from fileInit import *
 
-reader_data= []
-clean_data=[]
-catagory_list=[]
+reader_data = []
+clean_data = []
+catagory_list = []
+
 
 def dump():
     pass
@@ -38,9 +39,5 @@ def sender():
         
         catagory_list.append(data)
         catagory_list.sort()
-               
-        for filename in catagory_list:
-            
-            with open(f'{filename.replace(" ","-")}.json','a+') as file:
-                data = file.read()
-                      
+                     
+sender()
