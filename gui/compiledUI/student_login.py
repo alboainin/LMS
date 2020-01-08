@@ -1,10 +1,10 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-import resource_rc
+import assest.resource_rc
 
 class Ui_studentLoginWindow(object):
     def setupUi(self, studentLoginWindow):
         studentLoginWindow.setObjectName("studentLoginWindow")
-        studentLoginWindow.resize(293, 160)
+        studentLoginWindow.resize(300, 175)
         self.centralwidget = QtWidgets.QWidget(studentLoginWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayoutWidget = QtWidgets.QWidget(self.centralwidget)
@@ -18,13 +18,13 @@ class Ui_studentLoginWindow(object):
         self.gridLayout.addWidget(self.password_input, 2, 1, 1, 1)
         self.username_label = QtWidgets.QLabel(self.gridLayoutWidget)
         font = QtGui.QFont()
-        font.setPointSize(18)
+        font.setPointSize(12)
         self.username_label.setFont(font)
         self.username_label.setObjectName("username_label")
         self.gridLayout.addWidget(self.username_label, 1, 0, 1, 1)
         self.password_label = QtWidgets.QLabel(self.gridLayoutWidget)
         font = QtGui.QFont()
-        font.setPointSize(18)
+        font.setPointSize(12)
         self.password_label.setFont(font)
         self.password_label.setObjectName("password_label")
         self.gridLayout.addWidget(self.password_label, 2, 0, 1, 1)
@@ -35,14 +35,14 @@ class Ui_studentLoginWindow(object):
         self.gridLayout.addItem(spacerItem, 0, 0, 1, 1)
         self.login_button = QtWidgets.QPushButton(self.gridLayoutWidget)
         font = QtGui.QFont()
-        font.setPointSize(14)
+        font.setPointSize(8)
         self.login_button.setFont(font)
         self.login_button.setObjectName("login_button")
         self.gridLayout.addWidget(self.login_button, 3, 1, 1, 1)
         self.student_label = QtWidgets.QLabel(self.centralwidget)
         self.student_label.setGeometry(QtCore.QRect(10, 10, 211, 31))
         font = QtGui.QFont()
-        font.setPointSize(26)
+        font.setPointSize(16)
         self.student_label.setFont(font)
         self.student_label.setObjectName("student_label")
         studentLoginWindow.setCentralWidget(self.centralwidget)

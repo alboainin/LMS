@@ -1,11 +1,11 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-import resource_rc
+import assest.resource_rc
 
-class Ui_studentLoginWindow(object):
-    def setupUi(self, studentLoginWindow):
-        studentLoginWindow.setObjectName("studentLoginWindow")
-        studentLoginWindow.resize(293, 160)
-        self.centralwidget = QtWidgets.QWidget(studentLoginWindow)
+class Ui_adminLoginWindow(object):
+    def setupUi(self, adminLoginWindow):
+        adminLoginWindow.setObjectName("adminLoginWindow")
+        adminLoginWindow.resize(300, 175)
+        self.centralwidget = QtWidgets.QWidget(adminLoginWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayoutWidget = QtWidgets.QWidget(self.centralwidget)
         self.gridLayoutWidget.setGeometry(QtCore.QRect(20, 50, 241, 81))
@@ -18,13 +18,13 @@ class Ui_studentLoginWindow(object):
         self.gridLayout.addWidget(self.password_input, 2, 1, 1, 1)
         self.username_label = QtWidgets.QLabel(self.gridLayoutWidget)
         font = QtGui.QFont()
-        font.setPointSize(18)
+        font.setPointSize(12)
         self.username_label.setFont(font)
         self.username_label.setObjectName("username_label")
         self.gridLayout.addWidget(self.username_label, 1, 0, 1, 1)
         self.password_label = QtWidgets.QLabel(self.gridLayoutWidget)
         font = QtGui.QFont()
-        font.setPointSize(18)
+        font.setPointSize(12)
         self.password_label.setFont(font)
         self.password_label.setObjectName("password_label")
         self.gridLayout.addWidget(self.password_label, 2, 0, 1, 1)
@@ -35,28 +35,28 @@ class Ui_studentLoginWindow(object):
         self.gridLayout.addItem(spacerItem, 0, 0, 1, 1)
         self.login_button = QtWidgets.QPushButton(self.gridLayoutWidget)
         font = QtGui.QFont()
-        font.setPointSize(14)
+        font.setPointSize(8)
         self.login_button.setFont(font)
         self.login_button.setObjectName("login_button")
         self.gridLayout.addWidget(self.login_button, 3, 1, 1, 1)
-        self.student_label = QtWidgets.QLabel(self.centralwidget)
-        self.student_label.setGeometry(QtCore.QRect(10, 10, 211, 31))
+        self.admin_label = QtWidgets.QLabel(self.centralwidget)
+        self.admin_label.setGeometry(QtCore.QRect(10, 10, 211, 31))
         font = QtGui.QFont()
-        font.setPointSize(26)
-        self.student_label.setFont(font)
-        self.student_label.setObjectName("student_label")
-        studentLoginWindow.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(studentLoginWindow)
+        font.setPointSize(16)
+        self.admin_label.setFont(font)
+        self.admin_label.setObjectName("admin_label")
+        adminLoginWindow.setCentralWidget(self.centralwidget)
+        self.statusbar = QtWidgets.QStatusBar(adminLoginWindow)
         self.statusbar.setObjectName("statusbar")
-        studentLoginWindow.setStatusBar(self.statusbar)
+        adminLoginWindow.setStatusBar(self.statusbar)
 
-        self.retranslateUi(studentLoginWindow)
-        QtCore.QMetaObject.connectSlotsByName(studentLoginWindow)
+        self.retranslateUi(adminLoginWindow)
+        QtCore.QMetaObject.connectSlotsByName(adminLoginWindow)
 
-    def retranslateUi(self, studentLoginWindow):
+    def retranslateUi(self, adminLoginWindow):
         _translate = QtCore.QCoreApplication.translate
-        studentLoginWindow.setWindowTitle(_translate("studentLoginWindow", "Student Login"))
-        self.username_label.setText(_translate("studentLoginWindow", "Username:"))
-        self.password_label.setText(_translate("studentLoginWindow", "Password:"))
-        self.login_button.setText(_translate("studentLoginWindow", "LOGIN"))
-        self.student_label.setText(_translate("studentLoginWindow", "Student LOGIN"))
+        adminLoginWindow.setWindowTitle(_translate("adminLoginWindow", "Admin Login"))
+        self.username_label.setText(_translate("adminLoginWindow", "Username:"))
+        self.password_label.setText(_translate("adminLoginWindow", "Password:"))
+        self.login_button.setText(_translate("adminLoginWindow", "LOGIN"))
+        self.admin_label.setText(_translate("adminLoginWindow", "Admin LOGIN"))

@@ -1,13 +1,41 @@
-
 from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
+from compiledUI.admin_login import *
+from compiledUI.student_login import *
 import assest.resource_rc
+import sys 
+import os
 
 class Ui_MenuWindow(object):
+   
+    def openAdminLoginWindow(self):
+        self.window = QMainWindow()
+        self.ui = Ui_adminLoginWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+    
+    def openStudentLoginWindow(self):
+        self.window = QMainWindow()
+        self.ui = Ui_studentLoginWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+    
+    def openStudentSignInWindow():
+        self.window = QMainWindow()
+        self.ui = Ui_studentLoginWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+
+    def openGuestViewWindow():
+        self.window = QMainWindow()
+        self.ui = Ui_adminLoginWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+
     def setupUi(self, MenuWindow):
         MenuWindow.setObjectName("MenuWindow")
-        MenuWindow.resize(366, 302)
+        MenuWindow.resize(375, 300)
         self.centralwidget = QtWidgets.QWidget(MenuWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayoutWidget = QtWidgets.QWidget(self.centralwidget)
@@ -81,9 +109,18 @@ class Ui_MenuWindow(object):
         self.retranslateUi(MenuWindow)
         QtCore.QMetaObject.connectSlotsByName(MenuWindow)
 
+        
+
+        self.admin_login.clicked.connect(self.openAdminLoginWindow)
+        self.student_login.clicked.connect(self.openStudentLoginWindow)
+        self.student_signin.clicked.connect(self.openStudentSignInWindow)
+        self.guest_view.clicked.connect(self.openGuestViewWindow)
+
+        
+
     def retranslateUi(self, MenuWindow):
         _translate = QtCore.QCoreApplication.translate
-        MenuWindow.setWindowTitle(_translate("MenuWindow", "Library Managment System"))
+        MenuWindow.setWindowTitle(_translate("MenuWindow", "LMS"))
         self.admin_login.setText(_translate("MenuWindow", "Login"))
         self.admin_label.setText(_translate("MenuWindow", "Admin:"))
         self.student_label.setText(_translate("MenuWindow", "Student:"))
@@ -92,13 +129,4 @@ class Ui_MenuWindow(object):
         self.guest_label.setText(_translate("MenuWindow", "Guest:"))
         self.guest_view.setText(_translate("MenuWindow", "View"))
         self.logo.setText(_translate("MenuWindow", "<html><head/><body><p><img src=\":/image/logo.png\"/></p></body></html>"))
-
-if __name__ == '__main__':   
-    import sys 
-    print("LOEREE") 
-    app = QApplication(sys.argv)
-    MainWindow = QMainWindow()
-    ui = Ui_MenuWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
+        
