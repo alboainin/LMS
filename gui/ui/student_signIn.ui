@@ -1,45 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>adminLoginWindow</class>
- <widget class="QMainWindow" name="adminLoginWindow">
+ <class>SignInWindow</class>
+ <widget class="QMainWindow" name="SignInWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>293</width>
-    <height>160</height>
+    <width>363</width>
+    <height>287</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Admin Login</string>
+   <string>Sign In</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>50</y>
-      <width>241</width>
-      <height>81</height>
+      <y>60</y>
+      <width>301</width>
+      <height>191</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="2" column="1">
-      <widget class="QLineEdit" name="password_input"/>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="username_label">
+     <item row="2" column="0">
+      <widget class="QLabel" name="email_label">
        <property name="font">
         <font>
          <pointsize>18</pointsize>
         </font>
        </property>
        <property name="text">
-        <string>Username:</string>
+        <string>Email:</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
+     <item row="3" column="0">
       <widget class="QLabel" name="password_label">
        <property name="font">
         <font>
@@ -51,43 +48,51 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="username_input"/>
-     </item>
      <item row="0" column="0">
-      <spacer name="verticalSpacer">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>40</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="3" column="1">
-      <widget class="QPushButton" name="login_button">
+      <widget class="QLabel" name="name_label">
        <property name="font">
         <font>
-         <pointsize>14</pointsize>
+         <pointsize>18</pointsize>
         </font>
        </property>
        <property name="text">
-        <string>LOGIN</string>
+        <string>Name:</string>
        </property>
       </widget>
      </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="name_input"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="level_label">
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>level:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="level_input"/>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="email_input"/>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="password_input"/>
+     </item>
     </layout>
    </widget>
-   <widget class="QLabel" name="admin_label">
+   <widget class="QLabel" name="signInForum_label">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>40</x>
       <y>10</y>
-      <width>211</width>
-      <height>31</height>
+      <width>191</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
@@ -96,7 +101,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Admin LOGIN</string>
+     <string>Sign In Forum</string>
     </property>
    </widget>
   </widget>
