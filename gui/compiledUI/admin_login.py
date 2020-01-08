@@ -59,4 +59,4 @@ class Ui_adminLoginWindow(object):
         self.username_label.setText(_translate("adminLoginWindow", "Username:"))
         self.password_label.setText(_translate("adminLoginWindow", "Password:"))
         self.login_button.setText(_translate("adminLoginWindow", "LOGIN"))
-        self.admin_label.setText(_translate("adminLoginWindow", "Admin LOGIN"))
+        self.admin_label.setText(_translate("adminLoginWindow", "Admin LOGIN")) 

@@ -3,6 +3,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from compiledUI.admin_login import *
 from compiledUI.student_login import *
+from compiledUI.student_signIn import *
 import assest.resource_rc
 import sys 
 import os
@@ -21,9 +22,9 @@ class Ui_MenuWindow(object):
         self.ui.setupUi(self.window)
         self.window.show()
     
-    def openStudentSignInWindow():
+    def openStudentSignInWindow(self):
         self.window = QMainWindow()
-        self.ui = Ui_studentLoginWindow()
+        self.ui = Ui_SignInWindow()
         self.ui.setupUi(self.window)
         self.window.show()
 
@@ -129,4 +130,3 @@ class Ui_MenuWindow(object):
         self.guest_label.setText(_translate("MenuWindow", "Guest:"))
         self.guest_view.setText(_translate("MenuWindow", "View"))
         self.logo.setText(_translate("MenuWindow", "<html><head/><body><p><img src=\":/image/logo.png\"/></p></body></html>"))
-        
