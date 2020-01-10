@@ -1,4 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+import json
 import assest.resource_rc
 
 class Ui_studentLoginWindow(object):
@@ -17,12 +18,15 @@ class Ui_studentLoginWindow(object):
         self.password_input.setObjectName("password_input")
         self.gridLayout.addWidget(self.password_input, 2, 1, 1, 1)
         self.username_label = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.password_input.setEchoMode(QtWidgets.QLineEdit.Password)
+
         font = QtGui.QFont()
         font.setPointSize(12)
         self.username_label.setFont(font)
         self.username_label.setObjectName("username_label")
         self.gridLayout.addWidget(self.username_label, 1, 0, 1, 1)
         self.password_label = QtWidgets.QLabel(self.gridLayoutWidget)
+        
         font = QtGui.QFont()
         font.setPointSize(12)
         self.password_label.setFont(font)
@@ -34,6 +38,7 @@ class Ui_studentLoginWindow(object):
         spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.gridLayout.addItem(spacerItem, 0, 0, 1, 1)
         self.login_button = QtWidgets.QPushButton(self.gridLayoutWidget)
+        
         font = QtGui.QFont()
         font.setPointSize(8)
         self.login_button.setFont(font)
@@ -41,6 +46,7 @@ class Ui_studentLoginWindow(object):
         self.gridLayout.addWidget(self.login_button, 3, 1, 1, 1)
         self.student_label = QtWidgets.QLabel(self.centralwidget)
         self.student_label.setGeometry(QtCore.QRect(10, 10, 211, 31))
+        
         font = QtGui.QFont()
         font.setPointSize(16)
         self.student_label.setFont(font)
@@ -52,7 +58,7 @@ class Ui_studentLoginWindow(object):
 
         self.retranslateUi(studentLoginWindow)
         QtCore.QMetaObject.connectSlotsByName(studentLoginWindow)
-
+        self.login_button.clicked.connect(self.Handlelogin)
     def retranslateUi(self, studentLoginWindow):
         _translate = QtCore.QCoreApplication.translate
         studentLoginWindow.setWindowTitle(_translate("studentLoginWindow", "Student Login"))
@@ -60,3 +66,17 @@ class Ui_studentLoginWindow(object):
         self.password_label.setText(_translate("studentLoginWindow", "Password:"))
         self.login_button.setText(_translate("studentLoginWindow", "LOGIN"))
         self.student_label.setText(_translate("studentLoginWindow", "Student LOGIN"))
+    
+    def Handlelogin(self):
+        with open("data/student_account.json") as file:
+            data = json.load(file)
+            
+            for student in data['student']:
+              
+                if self.username_input.text() == student['username'] and self.password_input.text() == student['password']:
+                    self.accept = True    
+                    print("Welcome Back!")
+                    print(student['username']['age'])
+            
+                else:
+                    print('Username or Password are wrong')
