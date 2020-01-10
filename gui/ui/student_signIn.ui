@@ -24,18 +24,6 @@
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="2" column="0">
-      <widget class="QLabel" name="email_label">
-       <property name="font">
-        <font>
-         <pointsize>18</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Email:</string>
-       </property>
-      </widget>
-     </item>
      <item row="3" column="0">
       <widget class="QLabel" name="password_label">
        <property name="font">
@@ -48,20 +36,20 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="name_label">
+     <item row="2" column="0">
+      <widget class="QLabel" name="email_label">
        <property name="font">
         <font>
          <pointsize>18</pointsize>
         </font>
        </property>
        <property name="text">
-        <string>Name:</string>
+        <string>Email:</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="name_input"/>
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="password_input"/>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="level_label">
@@ -75,14 +63,38 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="level_input"/>
-     </item>
      <item row="2" column="1">
       <widget class="QLineEdit" name="email_input"/>
      </item>
-     <item row="3" column="1">
-      <widget class="QLineEdit" name="password_input"/>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="name_input"/>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="name_label">
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Name:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="level_input"/>
+     </item>
+     <item row="4" column="1">
+      <widget class="QPushButton" name="submit">
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
