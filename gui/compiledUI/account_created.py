@@ -1,4 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+import time
 
 
 class Ui_popUp_account_created_Window(object):
@@ -35,8 +36,25 @@ class Ui_popUp_account_created_Window(object):
         self.retranslateUi(popUp_account_created_Window)
         QtCore.QMetaObject.connectSlotsByName(popUp_account_created_Window)
 
+        
+        
+
     def retranslateUi(self, popUp_account_created_Window):
         _translate = QtCore.QCoreApplication.translate
         popUp_account_created_Window.setWindowTitle(_translate("popUp_account_created_Window", "msg"))
         self.text_label2.setText(_translate("popUp_account_created_Window", "account is now valid!"))
         self.text_label.setText(_translate("popUp_account_created_Window", "Account Created! 🎉"))
+
+    def closeEvent(self, event):
+        close = QMessageBox()
+        close.setText("You sure?")
+        close.setStandardButtons(QMessageBox.Yes | QMessageBox.Cancel)
+        close = close.exec()
+
+        if close == QMessageBox.Yes:
+            quit.triggered.connect(self.close)
+        else:
+            event.ignore()
+
+        time.sleep(10)
+        self.closeEvent(self)

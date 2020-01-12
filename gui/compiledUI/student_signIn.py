@@ -12,6 +12,14 @@ class Ui_SignInWindow(object):
         self.ui = Ui_popUp_account_created_Window()
         self.ui.setupUi(self.window)
         self.window.show()
+    
+    def popWindow(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("Congratz")
+        msg.setText("Account Created! 🎉")
+        msg.setIcon(QMessageBox.Information)
+        msg.setStandardButtons(QMessageBox.Ok|QMessageBox.Close)
+        exe = msg.exec_()
 
     def setupUi(self, SignInWindow):
         SignInWindow.setObjectName("SignInWindow")
@@ -64,7 +72,7 @@ class Ui_SignInWindow(object):
         self.level_input = QtWidgets.QLineEdit(self.gridLayoutWidget)
         self.level_input.setObjectName("level_input")
         self.gridLayout.addWidget(self.level_input, 1, 1, 1, 1)
-        self.submit = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.submit = QtWidgets.QPushButton(self.gridLayoutWidget, enabled = False)
         
         font = QtGui.QFont()
         font.setPointSize(12)
@@ -87,6 +95,7 @@ class Ui_SignInWindow(object):
         QtCore.QMetaObject.connectSlotsByName(SignInWindow)
 
         self.submit.pressed.connect(self.submitButton)
+        
 
     def retranslateUi(self, SignInWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -98,38 +107,44 @@ class Ui_SignInWindow(object):
         self.submit.setText(_translate("SignInWindow", "submit"))
         self.signInForum_label.setText(_translate("SignInWindow", "SIGN IN"))
 
-        self.name = self.name_input.text()
-        self.email = self.email_input.text()
-        self.level = self.level_input.text()
-        self.password = self.password_input.text()
-
-        self.submit.setDisabled(True)
-
-        self.name_input.textChanged.connect(self.disableButton)
         self.email_input.textChanged.connect(self.disableButton)
+        self.name_input.textChanged.connect(self.disableButton)
+        
         self.level_input.textChanged.connect(self.disableButton)
         self.password_input.textChanged.connect(self.disableButton)
         
 
     def submitButton(self):
-        form_dict = {"username":self.name, "email": self.email, "level" : self.level, "password": self.password}
-
-        with open("data/student_account.json","a+") as file:
-            json.dump(form_dict,file,sort_keys = True, indent = 3)
-        
-            self.openPopUpWindow()
+        self.name = self.name_input.text()
+        self.email = self.email_input.text()
+        self.level = self.level_input.text()
+        self.password = self.password_input.text()
 
         
+    
+         
+                
+        with open("data/student_account.json", "a+") as file:
+            
+       
+ 
+         #   self.form_dict = {"student":{"username":self.name, "email":self.email , "level":self.level, "password":self.password}}    
+          #  json.dump(self.form_dict,file, indent = 3)
+           # self.popWindow()
+            data = json.load(file)
+            
+                                     
+            data["student"].append({"username":self.name})
+            #json.dumps(x,file, indent = 3)
+            self.popWindow()
+           
     def disableButton(self):
         
-        if len(self.name_input.text()) > 0:
-            if len(self.email_input.text()) > 0:
-                if len(self.level_input.text()) > 0:
-                    if len(self.password_input.text()) > 0:
-                        self.submit.setDisabled(False)
-        
+        if len(self.name_input.text()) > 0 and len(self.email_input.text()) > 0 and len(self.level_input.text()) > 0 and len(self.password_input.text()) > 0:
+            self.submit.setEnabled(True)
+
         else:
-            self.submit.setDisabled(True)
+            self.submit.setEnabled(False)
     
 
         

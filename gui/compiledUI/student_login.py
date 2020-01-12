@@ -67,16 +67,14 @@ class Ui_studentLoginWindow(object):
         self.login_button.setText(_translate("studentLoginWindow", "LOGIN"))
         self.student_label.setText(_translate("studentLoginWindow", "Student LOGIN"))
     
+  
     def Handlelogin(self):
         with open("data/student_account.json") as file:
             data = json.load(file)
             
-            for student in data['student']:
-              
-                if self.username_input.text() == student['username'] and self.password_input.text() == student['password']:
-                    self.accept = True    
-                    print("Welcome Back!")
-                    print(student['username']['age'])
+
+            if self.username_input.text() == data['student']['username'] and self.password_input.text() == data['student']['password']:
+                print("Welcome Back!")
             
-                else:
-                    print('Username or Password are wrong')
+            else:
+                print('Username or Password are wrong')
