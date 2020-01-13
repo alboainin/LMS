@@ -127,14 +127,14 @@ class Ui_SignInWindow(object):
         with open("data/student_account.json", "a+") as file:
             data = json.load(file)            
        
-            if "student" in data:
+            if "db" in data:
                                      
-                data["student"].append({"username":self.name})
+                data["db"].append({"username":self.name})
                 json.dumps(x,file, indent = 3)
             
             else:
             
-                self.form_dict = {"student":{"username":self.name, "email":self.email , "level":self.level, "password":self.password}}    
+                self.form_dict = {"db":{"username":self.name, "email":self.email , "level":self.level, "password":self.password}}    
                 json.dump(self.form_dict,file, indent = 3)
      
     def disableButton(self):
