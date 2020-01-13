@@ -125,19 +125,18 @@ class Ui_SignInWindow(object):
          
                 
         with open("data/student_account.json", "a+") as file:
-            
+            data = json.load(file)            
        
- 
-         #   self.form_dict = {"student":{"username":self.name, "email":self.email , "level":self.level, "password":self.password}}    
-          #  json.dump(self.form_dict,file, indent = 3)
-           # self.popWindow()
-            data = json.load(file)
-            
+            if "student" in data:
                                      
-            data["student"].append({"username":self.name})
-            #json.dumps(x,file, indent = 3)
-            self.popWindow()
-           
+                data["student"].append({"username":self.name})
+                json.dumps(x,file, indent = 3)
+            
+            else:
+            
+                self.form_dict = {"student":{"username":self.name, "email":self.email , "level":self.level, "password":self.password}}    
+                json.dump(self.form_dict,file, indent = 3)
+     
     def disableButton(self):
         
         if len(self.name_input.text()) > 0 and len(self.email_input.text()) > 0 and len(self.level_input.text()) > 0 and len(self.password_input.text()) > 0:
