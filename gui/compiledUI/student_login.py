@@ -1,6 +1,9 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import json
+import sqlite3
 import assest.resource_rc
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
 
 class Ui_studentLoginWindow(object):
     def setupUi(self, studentLoginWindow):
@@ -59,6 +62,7 @@ class Ui_studentLoginWindow(object):
         self.retranslateUi(studentLoginWindow)
         QtCore.QMetaObject.connectSlotsByName(studentLoginWindow)
         self.login_button.clicked.connect(self.Handlelogin)
+     
     def retranslateUi(self, studentLoginWindow):
         _translate = QtCore.QCoreApplication.translate
         studentLoginWindow.setWindowTitle(_translate("studentLoginWindow", "Student Login"))
@@ -67,14 +71,23 @@ class Ui_studentLoginWindow(object):
         self.login_button.setText(_translate("studentLoginWindow", "LOGIN"))
         self.student_label.setText(_translate("studentLoginWindow", "Student LOGIN"))
     
-  
+       
     def Handlelogin(self):
-        with open("data/student_account.json") as file:
-            data = json.load(file)
-            
+        self.username = ""
+        self.password = ""
 
-            if self.username_input.text() == data['student']['username'] and self.password_input.text() == data['student']['password']:
-                print("Welcome Back!")
-            
+        self.username = self.username_input.text()  
+        self.password = self.password_input.text()
+       
+        try:
+            self.conn = sqlite3.connect("data/database.db")
+            self.c = self.conn.cursor()
+            self.c.execute('SELECT * from "students" WHERE "name" = ? AND "password" = ?',  (self.username,self.password))
+            if self.c.fetchone() is not None:
+                print("login success!")
             else:
-                print('Username or Password are wrong')
+                print("Login Failed!")
+            
+        except Exception:
+            QMessageBox.warning(QMessageBox(), 'Error', 'Could not Find student from the database.')
+            

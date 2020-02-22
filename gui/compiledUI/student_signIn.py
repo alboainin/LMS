@@ -2,7 +2,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from compiledUI.account_created import *
+import os
 import json
+import sqlite3
 
 class Ui_SignInWindow(object):
 
@@ -96,6 +98,10 @@ class Ui_SignInWindow(object):
 
         self.submit.pressed.connect(self.submitButton)
         
+        self.conn = sqlite3.connect("data/database.db")
+        self.c = self.conn.cursor()
+        self.c.execute("CREATE TABLE IF NOT EXISTS students(roll INTEGER PRIMARY KEY AUTOINCREMENT ,name TEXT,email TEXT,level INTEGER,password TEXT)")
+        self.c.close()
 
     def retranslateUi(self, SignInWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -112,26 +118,28 @@ class Ui_SignInWindow(object):
         
         self.level_input.textChanged.connect(self.disableButton)
         self.password_input.textChanged.connect(self.disableButton)
-        
+            
 
     def submitButton(self):
-        self.name = self.name_input.text()
-        self.email = self.email_input.text()
-        self.level = self.level_input.text()
-        self.password = self.password_input.text()
-
+        name = ""
+        email = ""
+        level = ""
+        password = ""
         
+        name = self.name_input.text()
+        email = self.email_input.text()
+        level = self.level_input.text()
+        password = self.password_input.text()
     
-         
-                
-        with open("data/student_account.json", "a+") as file:
-            data = json.load(file)            
-      
-            data["db"].append({"username":self.name})
-                 
-            self.form_dict = {"db":{"username":self.name, "email":self.email , "level":self.level, "password":self.password}}    
-            json.dump(self.form_dict,file, indent = 3)
-     
+        self.conn = sqlite3.connect("data/database.db")
+        self.c = self.conn.cursor()
+        self.c.execute("INSERT INTO students (name,email,level,password) VALUES (?,?,?,?)",(name,email,level,password))
+        self.conn.commit()
+        self.c.close()
+        self.conn.close()
+       
+        self.popWindow()
+
     def disableButton(self):
         
         if len(self.name_input.text()) > 0 and len(self.email_input.text()) > 0 and len(self.level_input.text()) > 0 and len(self.password_input.text()) > 0:
@@ -139,6 +147,3 @@ class Ui_SignInWindow(object):
 
         else:
             self.submit.setEnabled(False)
-    
-
-        
